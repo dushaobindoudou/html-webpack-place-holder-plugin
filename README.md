@@ -1,5 +1,5 @@
-# html-webpack-proprocess
-html-webpack-proprocess-plugin
+# html-webpack-place-holder-plugin
+html-webpack-place-holder-plugin
 
 Basic Usage
 -----------
@@ -7,7 +7,7 @@ Basic Usage
 Require the plugin in your webpack config:
 
 ```javascript
-var HtmlWebpackProprocessPlugin = require('html-webpack-preprocess-plugin');
+var HtmlWebpackPlaceHolderPlugin = require('html-webpack-place-holder-plugin');
 ```
 
 Add the plugin to your webpack config as follows:
@@ -15,7 +15,7 @@ Add the plugin to your webpack config as follows:
 ```javascript
 plugins: [
   new HtmlWebpackPlugin(),
-  new HtmlWebpackProprocessPlugin()
+  new HtmlWebpackPlaceHolderPlugin()
 ]  
 ```
 The above configuration will actually do nothing due to the configuration defaults.
@@ -25,9 +25,9 @@ always be written to disk. This is very useful if you want to pick up the output
 ```javascript
 plugins: [
   new HtmlWebpackPlugin({
-	alwaysWriteToDisk: true
+	usePlaceHolder: true
   }),
-  new HtmlWebpackProprocessPlugin()
+  new HtmlWebpackPlaceHolderPlugin()
 ]  
 ```
 
@@ -36,24 +36,8 @@ Even if you generate multiple files make sure that you add the HtmlWebpackHarddi
 ```javascript
 plugins: [
   new HtmlWebpackPlugin({
-		alwaysWriteToDisk: true
+		usePlaceHolder: true
 	}),
-  new HtmlWebpackPlugin({
-		alwaysWriteToDisk: true,
-		filename: 'demo.html'
-	}),
-  new HtmlWebpackPlugin({
-		alwaysWriteToDisk: false,
-		filename: 'test.html'
-	}),
-  new HtmlWebpackProprocessPlugin()
+  new HtmlWebpackPlaceHolderPlugin()
 ]  
-```
-
-If you need to set the output path explicitly (for example when using with webpack-dev-server middleware) then pass in the `outputPath` option:
-
-```
-new HtmlWebpackProprocessPlugin({
-  outputPath: path.resolve(__dirname, 'views')
-})
 ```
