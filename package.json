@@ -1,6 +1,6 @@
 {
   "name": "html-webpack-place-holder-plugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "html webpac plugin place holder ",
   "main": "index.js",
   "author": "dushaobin",

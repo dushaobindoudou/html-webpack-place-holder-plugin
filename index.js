@@ -1,7 +1,7 @@
 'use strict';
 var fs = require('fs');
 var path = require('path');
-var ejs = requuire('ejs');
+var ejs = require('ejs');
 
 function noon(){}
 
