@@ -3,6 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var ejs = require('ejs');
 
+var reg = /<\!--\W*{\W*place-holder\W*}\W*-->/ig;
 function noon(){}
 
 function HtmlWebpackPreprocessPlugin (options) {
@@ -20,7 +21,7 @@ HtmlWebpackPreprocessPlugin.prototype.apply = function (compiler) {
         // webpack 4 support
         compiler.hooks.compilation.tap('HtmlWebpackPreprocess', function (compilation) {
 
-            compilation.hooks.htmlWebpackPluginBeforeHtmlGeneration.tapAsync('HtmlWebpackPreprocess', function (htmlPluginData, callback) {
+            compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync('HtmlWebpackPreprocess', function (htmlPluginData, callback) {
                 self.append(compilation, htmlPluginData, callback);
                 // self.writeAssetToDisk(compilation, htmlPluginData.plugin.options, htmlPluginData.outputName, callback);
             });
@@ -29,7 +30,7 @@ HtmlWebpackPreprocessPlugin.prototype.apply = function (compiler) {
 };
 
 HtmlWebpackPreprocessPlugin.prototype.append = function(compilation, htmlPluginData, callback){
-    const options = htmlPluginData.plugin.options;
+    var options = htmlPluginData.plugin.options;
     if (options.notUsePlaceHolder) {
         return callback(null);
     }
@@ -39,12 +40,17 @@ HtmlWebpackPreprocessPlugin.prototype.append = function(compilation, htmlPluginD
     if(this.content){
 
         var newHtml = ejs.render(this.content, {assets: htmlPluginData.assets});
-
-        if(this.preppend){
-            htmlPluginData.html = newHtml + htmlPluginData.html;
+        // console.log('\n\n\n HtmlWebpackPreprocessPlugin: \n\n\n',reg.test(htmlPluginData.html), htmlPluginData);
+        if(reg.test(htmlPluginData.html)){
+            htmlPluginData.html = htmlPluginData.html.replace(reg, newHtml);
         }else{
-            htmlPluginData.html += newHtml;
+            if(this.preppend){
+                htmlPluginData.html = newHtml + htmlPluginData.html;
+            }else{
+                htmlPluginData.html += newHtml;
+            }
         }
+        
     }
     if(this.afterProcess() === false){
         return callback(null);
