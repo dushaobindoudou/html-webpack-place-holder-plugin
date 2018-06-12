@@ -1,0 +1,27 @@
+{
+  "name": "html-webpack-preprocess-plugin",
+  "version": "0.0.2",
+  "description": "html webpac plugin preprocess html/template source",
+  "main": "index.js",
+  "author": "dushaobin",
+  "license": "MIT",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.16.0",
+    "jasmine": "^2.4.1",
+    "memory-fs": "^0.3.0",
+    "rimraf": "^2.5.2",
+    "semistandard": "^7.0.5",
+    "webpack": "^1.13.0"
+  },
+  "peerDependencies": {
+    "html-webpack-plugin": "^2.0.0 || ^3.0.0",
+    "webpack": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/dushaobindoudou/html-webpack-preprocess.git/issues"
+  },
+  "homepage": "https://github.com/dushaobindoudou/html-webpack-preprocess.git",
+  "dependencies": {
+    "ejs": "^2.6.1"
+  }
+}
