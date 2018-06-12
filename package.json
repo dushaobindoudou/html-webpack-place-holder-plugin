@@ -1,7 +1,7 @@
 {
-  "name": "html-webpack-preprocess-plugin",
+  "name": "html-webpack-place-holder-plugin",
   "version": "0.0.2",
-  "description": "html webpac plugin preprocess html/template source",
+  "description": "html webpac plugin place holder ",
   "main": "index.js",
   "author": "dushaobin",
   "license": "MIT",
@@ -18,9 +18,9 @@
     "webpack": "^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "bugs": {
-    "url": "https://github.com/dushaobindoudou/html-webpack-preprocess.git/issues"
+    "url": "https://github.com/dushaobindoudou/html-webpack-place-holder-plugin.git/issues"
   },
-  "homepage": "https://github.com/dushaobindoudou/html-webpack-preprocess.git",
+  "homepage": "https://github.com/dushaobindoudou/html-webpack-place-holder-plugin.git",
   "dependencies": {
     "ejs": "^2.6.1"
   }
