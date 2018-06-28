@@ -22,6 +22,8 @@ HtmlWebpackPreprocessPlugin.prototype.apply = function (compiler) {
         compiler.hooks.compilation.tap('HtmlWebpackPreprocess', function (compilation) {
 
             compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync('HtmlWebpackPreprocess', function (htmlPluginData, callback) {
+
+                // console.log('htmlWebpackPluginAfterHtmlProcessing data:\n', Object.keys(compilation.assets), htmlPluginData.assets);
                 self.append(compilation, htmlPluginData, callback);
                 // self.writeAssetToDisk(compilation, htmlPluginData.plugin.options, htmlPluginData.outputName, callback);
             });
@@ -38,8 +40,8 @@ HtmlWebpackPreprocessPlugin.prototype.append = function(compilation, htmlPluginD
         return callback(null);
     }
     if(this.content){
-
-        var newHtml = ejs.render(this.content, {assets: htmlPluginData.assets});
+        var newHtml = ejs.render(this.content, {sourceAssets:compilation.assets, assets: htmlPluginData.assets, publicPath: htmlPluginData.assets.publicPath});
+        // console.log(newHtml);
         // console.log('\n\n\n HtmlWebpackPreprocessPlugin: \n\n\n',reg.test(htmlPluginData.html), htmlPluginData);
         if(reg.test(htmlPluginData.html)){
             htmlPluginData.html = htmlPluginData.html.replace(reg, newHtml);
